@@ -7,3 +7,10 @@ type User struct {
 	Password string `json:"password"`
 	Role     string `json:"role"`
 }
+
+
+type IUserUseCase interface {
+	CreateUser(user *User) (error)
+	LoginUser(user *User) (string,string,error)
+	GetUserByEamil(eamil string) (User,error)
+}
