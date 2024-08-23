@@ -7,3 +7,12 @@ type Blog struct {
 	UserID      uint   `json:"foreignKey:ID"`
 	User        User   `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }
+
+type IBlogUseCase interface {
+	CreateBlog(blog *Blog) error
+	GetBlogById(id uint) (*Blog, error)
+	GetAllBlogsByUserId(userId uint) ([]Blog, error)
+	GetAllBlogs() ([]Blog, error)
+	UpdateBlog(id uint, blog *Blog) error
+	DeleteBlog(id uint) error
+}
